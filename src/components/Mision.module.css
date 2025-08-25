@@ -1,0 +1,153 @@
+.misionSection {
+  position: relative;
+  width: 100vw;
+  min-height: 85vh;
+  overflow: hidden;
+}
+
+.background {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  right: 5%;
+  width: 90%;
+  height: 90%;
+  z-index: -1;
+  transition: transform 0.1s ease-out;
+}
+
+.animatedBg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #ff72a8, #f385ff, #c068ff, #ffe344);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  filter: blur(40px) opacity(0.4);
+}
+
+.bgImage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px) opacity(0.3);
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.misionContainer {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80vh;
+  color: #111;
+  font-family: 'Poppins', sans-serif;
+}
+
+.misionHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.misionTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 0 3px 6px rgba(166, 46, 46, 0.3);
+}
+
+.misionSubtitle {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  text-shadow: 0 2px 4px rgba(7, 6, 6, 0.2);
+}
+
+.misionContent {
+  display: flex;
+  align-items: center; /* dikey ortala */
+  justify-content: flex-start;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.rowReverse {
+  flex-direction: row-reverse;
+}
+
+/* Tek resim durumunda tüm contentleri resmin yanına hizala */
+.singleImageRow {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.misionText {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* dikey ortala */
+  margin-top: 0; /* tek resimde yukarı kaydır */
+  gap: 1rem;
+}
+
+.misionText p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.misionImage {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* resimi dikey ortala */
+}
+
+.misionImage img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .misionContent {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .misionText,
+  .misionImage {
+    min-width: 100%;
+  }
+
+  .misionImage img {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 768px) {
+  .misionTitle {
+    font-size: 2rem;
+  }
+
+  .misionSubtitle {
+    font-size: 1rem;
+  }
+}
