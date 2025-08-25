@@ -146,11 +146,15 @@ export default function ProductsPage() {
             {selectedProduct.images && selectedProduct.images.length > 0 && (
               <div className={styles.slider}>
                 <Image
+                  priority
                   src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${selectedProduct.images[currentImageIndex].filePath}`}
                   alt={selectedProduct.images[currentImageIndex].originalName}
+                  width={300}
+                  height={300}
                   className={`${styles.sliderImage} ${
                     fade ? styles.fadeIn : styles.fadeOut
                   }`}
+                  style={{ width: '100%', height: 'auto' }}
                 />
                 {selectedProduct.images.length > 1 && (
                   <>
@@ -243,8 +247,12 @@ function ProductCard({
         {product.images && product.images.length > 0 ? (
           <>
             <Image
+              priority
               src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${product.images[currentIndex].filePath}`}
               alt={lang === "tr" ? product.name_tr : product.name_en}
+              width={300}
+              height={300}
+              style={{ width: '100%', height: 'auto' }}
               className={styles.productImageMain}
             />
             {product.images.length > 1 && (

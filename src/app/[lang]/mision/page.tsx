@@ -101,10 +101,10 @@ export default function MisionPage() {
                   <Image
                     src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${section.image.filePath}`}
                     alt={section.image.originalName}
-                    width={400} // uygun genişlik
+                    width={300} // uygun genişlik
                     height={300} // uygun yükseklik
                     className={styles.misionImage}
-                    style={{ objectFit: "cover" }}
+                    style={{ width: '100%', height: 'auto', objectFit: "cover" }}
                   />
                 </div>
               )}
