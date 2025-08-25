@@ -268,9 +268,7 @@ function ProductCard({
               </div>
             )}
           </>
-        ) : (
-          <Image src="/images/default-product.jpg" alt="default" />
-        )}
+        ): null}
       </div>
       <div className={styles.productContent}>
         <div className={styles.productName}>
