@@ -12,6 +12,7 @@ const aboutService = new AboutService();
 export default function AboutPage() {
   const { lang } = useParams(); // tr veya en
   const bgRef = useRef<HTMLDivElement>(null);
+  const contentRefs = useRef<HTMLDivElement[]>([]);
   const [aboutData, setAboutData] = useState<About | null>(null);
   const [images, setImages] = useState<AboutImage[]>([]);
 
@@ -19,8 +20,8 @@ export default function AboutPage() {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window;
-      const x = (e.clientX / innerWidth - 0.5) * 30;
-      const y = (e.clientY / innerHeight - 0.5) * 30;
+      const x = (e.clientX / innerWidth - 0.5) * 20;
+      const y = (e.clientY / innerHeight - 0.5) * 20;
       if (bgRef.current) {
         bgRef.current.style.transform = `translate(${x}px, ${y}px)`;
       }
@@ -28,6 +29,31 @@ export default function AboutPage() {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
+
+  // Scroll animasyonları için Intersection Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.animate);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -80px 0px" }
+    );
+
+    const currentRefs = contentRefs.current; // Kopyaladık
+    currentRefs.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      currentRefs.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, [aboutData, images]);
 
   // Backend'den About ve resimleri çek
   useEffect(() => {
@@ -72,6 +98,16 @@ export default function AboutPage() {
 
   return (
     <section className={styles.aboutSection}>
+      {/* Floating Shapes Background */}
+      <div className={styles.floatingShapes}>
+        <div className={styles.shape1}></div>
+        <div className={styles.shape2}></div>
+        <div className={styles.shape3}></div>
+        <div className={styles.shape4}></div>
+        <div className={styles.shape5}></div>
+        <div className={styles.shape6}></div>
+      </div>
+
       <div className={styles.background} ref={bgRef}>
         <div className={styles.animatedBg}></div>
         <div className={styles.bgImage}></div>
@@ -92,6 +128,9 @@ export default function AboutPage() {
           return (
             <div
               key={index}
+              ref={(el) => {
+                if (el) contentRefs.current[index] = el;
+              }}
               className={`${styles.aboutContent} ${
                 !isEven ? styles.rowReverse : ""
               }`}
@@ -101,10 +140,14 @@ export default function AboutPage() {
                   <Image
                     src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${section.image.filePath}`}
                     alt={section.image.originalName}
-                    width={300} // uygun genişlik
-                    height={300} // uygun yükseklik
+                    width={500}
+                    height={400}
                     className={styles.aboutImage}
-                    style={{ width: '100%', height: 'auto', objectFit: "cover" }}
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                      objectFit: "cover",
+                    }}
                   />
                 </div>
               )}
@@ -113,6 +156,18 @@ export default function AboutPage() {
                 {section.contents.map((c, i) => (
                   <p key={i}>{lang === "tr" ? c.content_tr : c.content_en}</p>
                 ))}
+
+                {/* Skills section for the first content block */}
+                {index === 0 && (
+                  <div className={styles.skills}>
+                    <span className={styles.skillTag}>UI/UX Design</span>
+                    <span className={styles.skillTag}>Web Development</span>
+                    <span className={styles.skillTag}>Brand Identity</span>
+                    <span className={styles.skillTag}>Motion Graphics</span>
+                    <span className={styles.skillTag}>Prototyping</span>
+                    <span className={styles.skillTag}>Design Systems</span>
+                  </div>
+                )}
               </div>
             </div>
           );

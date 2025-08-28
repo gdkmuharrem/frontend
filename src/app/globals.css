@@ -1,5 +1,5 @@
 @tailwind base;
-@tailwind components;
+@tailwind utilities;
 @tailwind utilities;
 
 
@@ -11,22 +11,9 @@ body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth; /* Animasyonlu scroll */
+  margin-top: var(--navbar-height);
 }
 
-/* Link genel stili */
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: color 0.3s ease;
-}
-
-/* Section animasyonları */
-section {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.8s ease forwards;
-  animation-delay: 0.2s;
-}
 
 @keyframes fadeUp {
   to {
@@ -35,30 +22,16 @@ section {
   }
 }
 
-/* Başlıklar */
-h1, h2, h3, h4 {
-  color: #4B0082;
-}
-
-/* Butonlar */
-button, .btn {
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-/* Hover efektleri */
-button:hover, .btn:hover {
-  transform: translateY(-2px);
-}
 
 :root {
   --navbar-height: 64px; /* sabit navbar yüksekliği */
 }
 
-.mainContent {
-  padding-top: var(--navbar-height); /* içerik navbarın altında başlasın */
-}
 
-footer {
-  margin-bottom: 1rem; /* 32px */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -22,6 +22,8 @@ export default function ProductsPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
   const [fade, setFade] = useState<boolean>(true);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [isFiltering, setIsFiltering] = useState(false);
 
   useEffect(() => {
     async function loadData() {
@@ -30,6 +32,7 @@ export default function ProductsPage() {
         const prods = await productsService.getProducts();
         setCategories(cats.filter((c) => c.isActive));
         setProducts(prods.filter((p) => p.isActive));
+        setFilteredProducts(prods.filter((p) => p.isActive));
       } catch (err) {
         console.error("Veriler yüklenemedi", err);
       } finally {
@@ -39,17 +42,28 @@ export default function ProductsPage() {
     loadData();
   }, []);
 
+  // Kategori değiştiğinde yumuşak geçiş
+  useEffect(() => {
+    setIsFiltering(true);
+    
+    const timer = setTimeout(() => {
+      const filtered = activeCategory === "all"
+        ? products
+        : products.filter((p) => p.categoryId === activeCategory);
+      
+      setFilteredProducts(filtered);
+      setIsFiltering(false);
+    }, 300); // 300ms animasyon süresi
+    
+    return () => clearTimeout(timer);
+  }, [activeCategory, products]);
+
   // Modal kapandığında body scroll'unu geri getir
   useEffect(() => {
     return () => {
       document.body.style.overflow = "auto";
     };
   }, []);
-
-  const filteredProducts =
-    activeCategory === "all"
-      ? products
-      : products.filter((p) => p.categoryId === activeCategory);
 
   const changeSlide = useCallback(
     (direction: "next" | "prev") => {
@@ -65,7 +79,7 @@ export default function ProductsPage() {
           );
         });
         setFade(true);
-      }, 300);
+      }, 300); // Zamanı 300ms'ye çıkardık (150ms'den)
     },
     [selectedProduct]
   );
@@ -95,7 +109,27 @@ export default function ProductsPage() {
 
   return (
     <section className={styles.productsSection}>
-      {/* CATEGORY NAVBAR - DÜZELTİLDİ: Radius sorunu çözüldü */}
+      {/* Hero Section */}
+      <div className={styles.hero}>
+        <div className={styles.floatingShapes}>
+          <div className={styles.shape1}></div>
+          <div className={styles.shape2}></div>
+          <div className={styles.shape3}></div>
+          <div className={styles.shape4}></div>
+        </div>
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>
+            {lang === "tr" ? "Ürünlerimiz" : "Our Products"}
+          </h1>
+          <p className={styles.heroSubtitle}>
+            {lang === "tr" 
+              ? "Kaliteli ve özenle seçilmiş ürünlerimizi keşfedin" 
+              : "Discover our quality and carefully selected products"}
+          </p>
+        </div>
+      </div>
+
+      {/* CATEGORY NAVBAR */}
       <div className={styles.categoryNavbarContainer}>
         <div className={styles.categoryNavbar}>
           <button
@@ -122,8 +156,8 @@ export default function ProductsPage() {
         </div>
       </div>
 
-      {/* PRODUCTS GRID */}
-      <div className={styles.productsGrid}>
+      {/* PRODUCTS GRID - Yumuşak geçiş için animasyon sınıfı */}
+      <div className={`${styles.productsGrid} ${isFiltering ? styles.fadeOut : styles.fadeIn}`}>
         {filteredProducts.map((p) => (
           <ProductCard
             key={p.id}
@@ -145,17 +179,19 @@ export default function ProductsPage() {
           <div className={styles.modalContent} id="modal-content">
             {selectedProduct.images && selectedProduct.images.length > 0 && (
               <div className={styles.slider}>
-                <Image
+                <div className={styles.sliderImageContainer}>
+                  <Image
                   priority
-                  src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${selectedProduct.images[currentImageIndex].filePath}`}
-                  alt={selectedProduct.images[currentImageIndex].originalName}
-                  width={300}
-                  height={300}
-                  className={`${styles.sliderImage} ${
-                    fade ? styles.fadeIn : styles.fadeOut
-                  }`}
-                  style={{ width: '100%', height: 'auto' }}
-                />
+                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${selectedProduct.images[currentImageIndex].filePath}`}
+                    alt={selectedProduct.images[currentImageIndex].originalName}
+                    width={300}
+                    height={300}
+                    className={`${styles.sliderImage} ${
+                      fade ? styles.fadeIn : styles.fadeOut
+                    }`}
+                    style={{ width: '100%', height: 'auto' }}
+                  />
+                </div>
                 {selectedProduct.images.length > 1 && (
                   <>
                     <button
@@ -185,6 +221,9 @@ export default function ProductsPage() {
                 ? selectedProduct.name_tr
                 : selectedProduct.name_en}
             </div>
+            <div className={styles.modalProductPrice}>
+              {selectedProduct.price.toFixed(2)}₺
+            </div>
             <button
               className={styles.closeButton}
               onClick={() => {
@@ -213,27 +252,39 @@ function ProductCard({
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
+  const [fade, setFade] = useState(true);
 
-  // DÜZELTİLDİ: Slider otomatik hareket etmiyordu
   useEffect(() => {
     if (product.images && product.images.length > 1 && !isHovering) {
       const interval = setInterval(() => {
-        setCurrentIndex((i) => (i + 1) % product.images!.length);
+        setFade(false);
+        setTimeout(() => {
+          setCurrentIndex((i) => (i + 1) % product.images!.length);
+          setFade(true);
+        }, 300); // Zamanı 300ms'ye çıkardık (150ms'den)
       }, 3000);
       return () => clearInterval(interval);
     }
-  }, [product, isHovering]); // currentIndex dependency eklendi
+  }, [product, isHovering]);
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentIndex(
-      (i) => (i - 1 + product.images!.length) % product.images!.length
-    );
+    setFade(false);
+    setTimeout(() => {
+      setCurrentIndex(
+        (i) => (i - 1 + product.images!.length) % product.images!.length
+      );
+      setFade(true);
+    }, 300); // Zamanı 300ms'ye çıkardık (150ms'den)
   };
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentIndex((i) => (i + 1) % product.images!.length);
+    setFade(false);
+    setTimeout(() => {
+      setCurrentIndex((i) => (i + 1) % product.images!.length);
+      setFade(true);
+    }, 300); // Zamanı 300ms'ye çıkardık (150ms'den)
   };
 
   return (
@@ -246,15 +297,17 @@ function ProductCard({
       <div className={styles.productImage}>
         {product.images && product.images.length > 0 ? (
           <>
-            <Image
-              priority
-              src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${product.images[currentIndex].filePath}`}
-              alt={lang === "tr" ? product.name_tr : product.name_en}
-              width={300}
-              height={300}
-              style={{ width: '100%', height: 'auto' }}
-              className={styles.productImageMain}
-            />
+            <div className={styles.productImageContainer}>
+              <Image
+                priority
+                src={`${process.env.NEXT_PUBLIC_API_BASE_URL}/${product.images[currentIndex].filePath}`}
+                alt={lang === "tr" ? product.name_tr : product.name_en}
+                width={300}
+                height={300}
+                style={{ width: '100%', height: 'auto' }}
+                className={`${styles.productImageMain} ${fade ? styles.fadeIn : styles.fadeOut}`}
+              />
+            </div>
             {product.images.length > 1 && (
               <div className={styles.thumbnailControls}>
                 <button className={styles.thumbnailPrev} onClick={handlePrev}>

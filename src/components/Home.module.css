@@ -1,0 +1,271 @@
+/* Ana Container */
+.previewContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  width: 90%;
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+/* Her bir bölüm için stiller */
+.previewSection {
+  padding: 2rem 0;
+}
+
+.container {
+  width: 100%;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+.animateTitle {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.previewItem {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(20px);
+  opacity: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  height: 500px; /* Sabit yükseklik */
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.animateItem {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.previewItem:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.previewImage {
+  position: relative;
+  width: 100%;
+  height: 250px; /* Görsel yüksekliği sabit */
+  overflow: hidden;
+}
+
+.previewImage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.previewItem:hover .previewImage::before {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(139, 92, 246, 0.3) 100%);
+}
+
+.previewContent {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 250px; /* İçerik kısmı için sabit yükseklik */
+  overflow: hidden;
+}
+
+.previewContent p {
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Maksimum satır sayısı */
+  -webkit-box-orient: vertical;
+}
+
+.detailsButton {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #8b5aa8;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.detailsButton:hover {
+  transform: translateY(-2px);
+  background: #a96abc;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Contact Section Styles */
+.contactSection {
+  padding: 2rem 0;
+  grid-column: 1 / -1; /* Tüm sütunları kapla */
+}
+
+.contactCard {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(20px);
+  opacity: 0;
+  padding: 3rem;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.animateItem {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.contactCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.contactContent {
+  max-width: 600px;
+}
+
+.contactContent h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.contactContent p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.contactButton {
+  display: inline-block;
+  padding: 14px 32px;
+  background: white;
+  color: #764ba2;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.contactButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: all 0.6s ease;
+}
+
+.contactButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  color: #5a3694;
+}
+
+.contactButton:hover::before {
+  left: 100%;
+}
+
+/* Responsive tasarım için medya sorguları */
+@media (max-width: 1024px) {
+  .previewContainer {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .contactCard {
+    padding: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .previewContainer {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .previewItem {
+    max-width: 100%;
+    height: auto; /* Mobilde yükseklik otomatik */
+    min-height: 450px;
+  }
+  
+  .previewContent {
+    height: auto; /* Mobilde içerik yüksekliği otomatik */
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  
+  .previewContent p {
+    -webkit-line-clamp: 4; /* Mobilde daha az satır */
+  }
+  
+  .contactCard {
+    padding: 2rem 1.5rem;
+    min-height: 250px;
+  }
+  
+  .contactContent h3 {
+    font-size: 1.7rem;
+  }
+  
+  .contactContent p {
+    font-size: 1rem;
+  }
+  
+  .contactButton {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+}

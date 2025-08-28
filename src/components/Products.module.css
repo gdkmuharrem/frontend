@@ -2,16 +2,171 @@
   width: 100%;
   min-height: 80vh;
   padding: 2rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
   box-sizing: border-box;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* DÜZELTİLDİ: Kategori barı radius sorunu çözüldü */
+/* Hero Section */
+.hero {
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  position: relative;
+  overflow: hidden;
+  margin: -2rem -2rem 3rem -2rem;
+  border-radius: 0 0 30px 30px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  animation: float 25s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  animation: pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  100% { opacity: 0.8; }
+}
+
+.floatingShapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.shape1, .shape2, .shape3, .shape4 {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.shape1 {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 10%;
+  animation-name: floatShape1;
+}
+
+.shape2 {
+  width: 120px;
+  height: 120px;
+  top: 60%;
+  right: 15%;
+  background: rgba(255, 255, 255, 0.08);
+  animation-name: floatShape2;
+  animation-direction: reverse;
+}
+
+.shape3 {
+  width: 60px;
+  height: 60px;
+  top: 30%;
+  right: 25%;
+  background: rgba(255, 255, 255, 0.12);
+  animation-name: floatShape3;
+}
+
+.shape4 {
+  width: 100px;
+  height: 100px;
+  bottom: 25%;
+  left: 20%;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  animation-name: floatShape4;
+}
+
+@keyframes floatShape1 {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  25% { transform: translateY(-30px) translateX(20px) rotate(90deg); }
+  50% { transform: translateY(-15px) translateX(-10px) rotate(180deg); }
+  75% { transform: translateY(-40px) translateX(15px) rotate(270deg); }
+}
+
+@keyframes floatShape2 {
+  0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+  33% { transform: translateY(25px) translateX(-20px) scale(1.1); }
+  66% { transform: translateY(-20px) translateX(25px) scale(0.9); }
+}
+
+@keyframes floatShape3 {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  50% { transform: translateY(-25px) translateX(-30px) rotate(180deg); }
+}
+
+@keyframes floatShape4 {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  25% { transform: translateY(20px) translateX(-15px) rotate(45deg); }
+  50% { transform: translateY(-10px) translateX(30px) rotate(90deg); }
+  75% { transform: translateY(15px) translateX(-20px) rotate(135deg); }
+}
+
+.heroContent {
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+  position: relative;
+  max-width: 900px;
+  padding: 0 2rem;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.heroSubtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Kategori Navbar */
 .categoryNavbarContainer {
   display: flex;
   justify-content: center;
-  margin: 0 auto 2rem;
+  margin: 0 auto 3rem;
   width: 100%;
 }
 
@@ -20,39 +175,48 @@
   gap: 1rem;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem 1rem;
-  background: #7b3fbf;
-  border-radius: 15px;
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 50px;
   flex-wrap: wrap;
   width: max-content;
   max-width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .categoryButton {
-  padding: 0.4rem 0.8rem;
+  padding: 0.6rem 1.2rem;
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 500;
-  color: #fff;
-  transition: color 0.3s ease;
+  color: #64748b;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 25px;
   white-space: nowrap;
 }
 
 .categoryButton:hover {
-  color: #ff6b6b;
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+  transform: translateY(-2px);
 }
 
 .activeCategory {
-  color: #ff6b6b;
+  color: #fff !important;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
+/* Products Grid */
 .productsGrid {
   display: grid;
-  gap: 1.2rem;
+  gap: 2rem;
   justify-content: center;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   margin: 0 auto;
   width: 100%;
   box-sizing: border-box;
@@ -61,14 +225,14 @@
 @media (min-width: 600px) {
   .productsGrid {
     grid-template-columns: repeat(2, 1fr);
-    max-width: 520px;
+    max-width: 600px;
   }
 }
 
 @media (min-width: 900px) {
   .productsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    max-width: 1000px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    max-width: 900px;
   }
 }
 
@@ -79,19 +243,22 @@
   }
 }
 
+/* Product Card */
 .productCard {
-  border: 1px solid #ddd;
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   background: #fff;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
 }
 
 .productCard:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .productImage {
@@ -101,7 +268,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f7f7f7;
+  background: #f8fafc;
   position: relative;
 }
 
@@ -109,7 +276,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.productCard:hover .productImageMain {
+  transform: scale(1.05);
 }
 
 .thumbnailControls {
@@ -123,9 +294,11 @@
   gap: 10px;
   opacity: 0;
   transition: opacity 0.3s ease;
-  padding: 5px;
-  background: rgba(0, 0, 0, 0.3);
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(5px);
+  border-radius: 20px;
+  margin: 0 10px;
 }
 
 .productCard:hover .thumbnailControls {
@@ -133,12 +306,12 @@
 }
 
 .thumbnailPrev, .thumbnailNext {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   color: #333;
   border: none;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -172,35 +345,38 @@
 }
 
 .productContent {
-  padding: 0.8rem;
+  padding: 1.5rem;
   text-align: center;
 }
 
 .productName {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
 }
 
 .productPrice {
-  color: #e63946;
-  font-size: 0.95rem;
-  font-weight: 500;
+  color: #6366f1;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .loading {
   text-align: center;
   font-size: 1.2rem;
-  padding: 2rem;
+  padding: 3rem;
+  color: #64748b;
 }
 
+/* Modal Styles */
 .modalBackdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(15, 23, 42, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,24 +384,25 @@
   overflow-y: auto;
   padding: 20px;
   box-sizing: border-box;
+  backdrop-filter: blur(10px);
 }
 
 .modalContent {
   background: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
+  padding: 2rem;
+  border-radius: 20px;
   max-width: 600px;
   width: 100%;
   position: relative;
   text-align: center;
   margin: auto;
-  /* Modal'ı her zaman ortalamak için */
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-height: 90vh;
   overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .slider {
@@ -233,25 +410,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .sliderImage {
   width: 100%;
-  max-height: 60vh;
+  height: auto;
   object-fit: contain;
-  border-radius: 8px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  border-radius: 15px;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .fadeIn {
   opacity: 1;
   transform: scale(1);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .fadeOut {
   opacity: 0;
-  transform: scale(0.95);
+  transform: scale(1.05);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .prevButton,
@@ -259,10 +438,10 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
   border: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -270,13 +449,14 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
   z-index: 10;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .prevButton:hover,
 .nextButton:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 1);
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -290,43 +470,66 @@
 
 .modalProductName {
   margin-top: 1rem;
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: #333;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #1e293b;
+}
+
+.modalProductPrice {
+  color: #6366f1;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0.5rem 0 1.5rem;
 }
 
 .closeButton {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.1);
+  color: #64748b;
   border: none;
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 18px;
-  transition: all 0.2s ease;
+  font-size: 20px;
+  transition: all 0.3s ease;
 }
 
 .closeButton:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.2);
+  color: #1e293b;
   transform: scale(1.1);
 }
 
+/* Responsive Styles */
 @media (max-width: 768px) {
   .productsSection {
     padding: 1rem;
   }
   
+  .hero {
+    height: 30vh;
+    margin: -1rem -1rem 2rem -1rem;
+    border-radius: 0 0 20px 20px;
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  
   .productsGrid {
     grid-template-columns: 1fr;
     max-width: 100%;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   .productImage {
@@ -338,7 +541,7 @@
   }
   
   .modalContent {
-    padding: 1rem;
+    padding: 1.5rem;
     width: 95%;
     margin: 20px auto;
     position: fixed;
@@ -352,7 +555,7 @@
   .nextButton {
     width: 40px;
     height: 40px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   
   .modalBackdrop {
@@ -364,27 +567,25 @@
     opacity: 1;
   }
   
-  /* DÜZELTİLDİ: Kategori barı radius sorunu mobilde çözüldü */
   .categoryNavbarContainer {
     padding: 0 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   
   .categoryNavbar {
     width: 100%;
-    border-radius: 15px;
+    border-radius: 25px;
     justify-content: flex-start;
     overflow-x: auto;
-    padding: 0.5rem;
+    padding: 0.8rem;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none;
   }
   
   .categoryNavbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
+    display: none;
   }
   
-  /* Mobilde modal içeriği scroll edilebilir */
   .modalContent {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -396,4 +597,115 @@
   .modalContent {
     max-height: 80vh;
   }
+}
+
+/* Önceki stilleri koruyoruz ve aşağıdaki yeni stilleri ekliyoruz */
+
+/* Yumuşak geçiş animasyonları */
+.fadeIn {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.fadeOut {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Ürün grid için fade animasyonu */
+.productsGrid {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Slider görüntüleri için daha yumuşak geçiş */
+.sliderImage {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.productImageMain {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Kategori butonları için daha yumuşak geçiş */
+.categoryButton {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modal için daha yumuşak açılış */
+.modalBackdrop {
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(10px);
+  }
+}
+
+.modalContent {
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Ürün kartları için daha hafif hover efekti */
+.productCard {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Kategori değişiminde grid için özel animasyon */
+.productsGrid.fadeOut {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.productsGrid.fadeIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Daha yumuşak slider kontrolleri */
+.thumbnailPrev, .thumbnailNext {
+  transition: all 0.2s ease;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 768px) {
+  .productsGrid.fadeOut {
+    transform: translateY(5px);
+  }
+  
+  /* Mobilde daha hızlı animasyonlar */
+  .fadeIn, .fadeOut {
+    transition-duration: 0.3s;
+  }
+}
+
+.sliderImageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Product Image Container */
+.productImageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
