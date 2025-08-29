@@ -1,8 +1,9 @@
 /* Ana Container */
 .previewContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 3 sütun */
   gap: 2.5rem;
+  align-items: start; /* üstten hizala */
   width: 90%;
   max-width: 1200px;
   margin: 3rem auto;
@@ -43,11 +44,11 @@
   transform: translateY(20px);
   opacity: 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  height: 500px; /* Sabit yükseklik */
   display: flex;
   flex-direction: column;
-  max-width: 450px;
+  height: auto;
   margin: 0 auto;
+  width: 100%; /* grid sütununa göre ayarlansın */
 }
 
 .animateItem {
@@ -215,6 +216,134 @@
   left: 100%;
 }
 
+/* Products Preview Section */
+.productsPreviewSection {
+  padding: 2rem 0;
+  grid-column: 1 / -1;
+}
+
+
+.animateItem {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Products Grid */
+.productsGrid {
+  display: grid;
+  gap: 1.5rem;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin: 0 auto 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Product Card */
+.productCard {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.productCard:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.productImage {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  position: relative;
+}
+
+.productImageMain {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.productCard:hover .productImageMain {
+  transform: scale(1.05);
+}
+
+.productContent {
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.productName {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #1e293b;
+  line-height: 1.3;
+}
+
+.productPrice {
+  color: #6366f1;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* View All Button */
+.viewAllContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.viewAllButton {
+  display: inline-block;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.viewAllButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+  background: linear-gradient(135deg, #5a5feb 0%, #7c3aed 100%);
+}
+
+/* Animasyonlar */
+.fadeIn {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.fadeOut {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Product Image Container */
+.productImageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 /* Responsive tasarım için medya sorguları */
 @media (max-width: 1024px) {
   .previewContainer {
@@ -224,6 +353,10 @@
   
   .contactCard {
     padding: 2.5rem;
+  }
+  
+  .productsGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -235,12 +368,12 @@
   
   .previewItem {
     max-width: 100%;
-    height: auto; /* Mobilde yükseklik otomatik */
+    height: auto;
     min-height: 450px;
   }
   
   .previewContent {
-    height: auto; /* Mobilde içerik yüksekliği otomatik */
+    height: auto;
   }
   
   .sectionTitle {
@@ -248,7 +381,7 @@
   }
   
   .previewContent p {
-    -webkit-line-clamp: 4; /* Mobilde daha az satır */
+    -webkit-line-clamp: 4;
   }
   
   .contactCard {
@@ -267,5 +400,37 @@
   .contactButton {
     padding: 12px 24px;
     font-size: 1rem;
+  }
+  
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .productImage {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  
+  .productsGrid {
+    gap: 1rem;
+  }
+  
+  .productContent {
+    padding: 1rem;
+  }
+  
+  .productName {
+    font-size: 0.9rem;
+  }
+  
+  .productPrice {
+    font-size: 0.9rem;
+  }
+  
+  .viewAllButton {
+    padding: 10px 20px;
+    font-size: 0.9rem;
   }
 }

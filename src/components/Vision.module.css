@@ -1,3 +1,4 @@
+/* Vision Section */
 .visionSection {
   position: relative;
   width: 100%;
@@ -7,6 +8,7 @@
   padding: 100px 0;
 }
 
+/* Background */
 .background {
   position: absolute;
   top: 5%;
@@ -26,7 +28,6 @@
   background-size: 400% 400%;
   animation: gradientMove 15s ease infinite;
   filter: blur(60px) opacity(0.3);
-  /* Mobil optimizasyon */
   will-change: background-position;
 }
 
@@ -37,12 +38,6 @@
   background-size: cover;
   background-position: center;
   filter: blur(30px) opacity(0.2);
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 /* Floating Shapes */
@@ -60,102 +55,19 @@
   position: absolute;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  /* Mobil optimizasyon */
   will-change: transform;
   backface-visibility: hidden;
 }
 
-.shape1 {
-  width: 80px;
-  height: 80px;
-  top: 20%;
-  left: 10%;
-  animation: floatShape1 20s ease-in-out infinite;
-}
+/* Shape Animations */
+.shape1 { width: 80px; height: 80px; top: 20%; left: 10%; animation: floatShape1 20s ease-in-out infinite; }
+.shape2 { width: 120px; height: 120px; top: 60%; right: 15%; background: rgba(255, 255, 255, 0.08); animation: floatShape2 25s ease-in-out infinite reverse; }
+.shape3 { width: 60px; height: 60px; top: 30%; right: 25%; background: rgba(255, 255, 255, 0.12); animation: floatShape3 18s ease-in-out infinite; }
+.shape4 { width: 100px; height: 100px; bottom: 25%; left: 20%; background: rgba(255, 255, 255, 0.06); border-radius: 20px; animation: floatShape4 22s ease-in-out infinite; }
+.shape5 { width: 40px; height: 40px; top: 15%; right: 40%; background: rgba(255, 255, 255, 0.15); animation: floatShape5 16s ease-in-out infinite reverse; }
+.shape6 { width: 140px; height: 140px; bottom: 15%; right: 10%; background: rgba(255, 255, 255, 0.04); border-radius: 30px; animation: floatShape6 28s ease-in-out infinite; }
 
-.shape2 {
-  width: 120px;
-  height: 120px;
-  top: 60%;
-  right: 15%;
-  background: rgba(255, 255, 255, 0.08);
-  animation: floatShape2 25s ease-in-out infinite reverse;
-}
-
-.shape3 {
-  width: 60px;
-  height: 60px;
-  top: 30%;
-  right: 25%;
-  background: rgba(255, 255, 255, 0.12);
-  animation: floatShape3 18s ease-in-out infinite;
-}
-
-.shape4 {
-  width: 100px;
-  height: 100px;
-  bottom: 25%;
-  left: 20%;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 20px;
-  animation: floatShape4 22s ease-in-out infinite;
-}
-
-.shape5 {
-  width: 40px;
-  height: 40px;
-  top: 15%;
-  right: 40%;
-  background: rgba(255, 255, 255, 0.15);
-  animation: floatShape5 16s ease-in-out infinite reverse;
-}
-
-.shape6 {
-  width: 140px;
-  height: 140px;
-  bottom: 15%;
-  right: 10%;
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 30px;
-  animation: floatShape6 28s ease-in-out infinite;
-}
-
-@keyframes floatShape1 {
-  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-  25% { transform: translateY(-30px) translateX(20px) rotate(90deg); }
-  50% { transform: translateY(-15px) translateX(-10px) rotate(180deg); }
-  75% { transform: translateY(-40px) translateX(15px) rotate(270deg); }
-}
-
-@keyframes floatShape2 {
-  0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
-  33% { transform: translateY(25px) translateX(-20px) scale(1.1); }
-  66% { transform: translateY(-20px) translateX(25px) scale(0.9); }
-}
-
-@keyframes floatShape3 {
-  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-  50% { transform: translateY(-25px) translateX(-30px) rotate(180deg); }
-}
-
-@keyframes floatShape4 {
-  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-  25% { transform: translateY(20px) translateX(-15px) rotate(45deg); }
-  50% { transform: translateY(-10px) translateX(30px) rotate(90deg); }
-  75% { transform: translateY(15px) translateX(-20px) rotate(135deg); }
-}
-
-@keyframes floatShape5 {
-  0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
-  50% { transform: translateY(-35px) translateX(20px) scale(1.2); }
-}
-
-@keyframes floatShape6 {
-  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-  33% { transform: translateY(-15px) translateX(10px) rotate(60deg); }
-  66% { transform: translateY(10px) translateX(-25px) rotate(120deg); }
-}
-
+/* Vision Container */
 .visionContainer {
   position: relative;
   z-index: 2;
@@ -166,17 +78,17 @@
   flex-direction: column;
   justify-content: center;
   min-height: 80vh;
-  color: #ffffff;
+  color: #fff;
   font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
 }
 
+/* Header */
 .visionHeader {
   text-align: center;
   margin-bottom: 4rem;
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 1s ease 0.4s forwards;
-  /* Mobil optimizasyon */
   will-change: transform, opacity;
 }
 
@@ -184,7 +96,7 @@
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+  background: linear-gradient(135deg, #fff 0%, #e2e8f0 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -199,13 +111,7 @@
   font-weight: 400;
 }
 
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Vision Content */
 .visionContent {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -215,193 +121,81 @@
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  /* Mobil optimizasyon */
   will-change: transform, opacity;
 }
 
-.visionContent.animate {
-  opacity: 1;
-  transform: translateY(0);
-}
+.visionContent.animate { opacity: 1; transform: translateY(0); }
 
-.rowReverse {
-  direction: rtl;
-}
+.rowReverse { direction: rtl; }
+.rowReverse > * { direction: ltr; }
 
-.rowReverse > * {
-  direction: ltr;
-}
-
-.visionText {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.visionText p {
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.1rem;
-  margin: 0;
-}
+.visionText { display: flex; flex-direction: column; gap: 1.5rem; }
+.visionText p { line-height: 1.8; color: rgba(255,255,255,0.9); font-size: 1.1rem; margin:0; }
 
 .visionImage {
   position: relative;
   overflow: hidden;
   border-radius: 25px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
   transform: rotate(-2deg);
   transition: transform 0.4s ease;
-  /* Mobil optimizasyon */
   will-change: transform;
 }
-
-.visionImage:hover {
-  transform: rotate(0deg) scale(1.02);
-}
-
-.visionImage img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 25px;
-}
+.visionImage:hover { transform: rotate(0deg) scale(1.02); }
+.visionImage img { width: 100%; height: auto; display: block; border-radius: 25px; }
 
 /* Skills Section */
-.skills {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 2rem;
-}
-
+.skills { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
 .skillTag {
   padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
   border-radius: 30px;
   font-size: 0.9rem;
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255,255,255,0.2);
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
 }
+.skillTag:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); box-shadow:0 10px 20px rgba(0,0,0,0.2); }
 
-.skillTag:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
+/* Keyframes */
+@keyframes gradientMove { 0% { background-position:0% 50%; } 50% { background-position:100% 50%; } 100% { background-position:0% 50%; } }
+@keyframes fadeInUp { to { opacity:1; transform:translateY(0); } }
 
-/* Mobil için performans iyileştirmeleri */
-@media (max-width: 768px) {
-  /* Arka plan animasyonlarını basitleştir */
-  .animatedBg {
-    animation: gradientMove 25s ease infinite;
-    filter: blur(40px) opacity(0.3);
-  }
-  
-  /* Şekil animasyonlarını optimize et */
-  .shape {
-    animation-duration: 35s !important; /* Tüm animasyonları yavaşlat */
-    opacity: 0.7; /* Opaklığı azalt */
-  }
-  
-  /* Daha az şekil göster */
-  .shape4, .shape5, .shape6 {
-    display: none;
-  }
-  
-  /* Donanım hızlandırma için transform özellikleri */
-  .shape, .animatedBg, .visionHeader, .visionContent {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
-  
-  /* Daha hafif blur efekti */
-  .bgImage {
-    filter: blur(20px) opacity(0.2);
-  }
-  
-  /* Yazı tipi boyutları */
-  .visionTitle {
-    font-size: 2.5rem;
-  }
-
-  .visionSubtitle {
-    font-size: 1.1rem;
-  }
-
-  .visionText p {
-    font-size: 1rem;
-  }
-
-  .skills {
-    justify-content: center;
-  }
-
-  .skillTag {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.85rem;
-    /* Mobilde backdrop-filter'ı kaldır (performans için) */
-    backdrop-filter: none;
-  }
-}
-
-@media (max-width: 480px) {
-  .visionTitle {
-    font-size: 2rem;
-  }
-
-  .visionContainer {
-    padding: 1rem;
-  }
-
-  .visionContent {
-    gap: 2rem;
-    margin-bottom: 4rem;
-  }
-
-  .skillTag {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
-  }
-  
-  /* Ek mobil optimizasyonlar */
-  .visionSection {
-    padding: 60px 0;
-  }
-  
-  .floatingShapes {
-    /* Çok düşük çözünürlükte şekilleri tamamen kaldır */
-    display: none;
-  }
-  
-  /* Daha küçük ekranlar için padding ayarları */
-  .visionContainer {
-    padding: 1.5rem;
-  }
-}
-
-/* Yüksek DPI ekranlar için ek optimizasyon */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .shape {
-    transform: translateZ(0); /* Donanım hızlandırma */
-  }
-}
-
+/* Floating Shapes Animations (kısa) */
+@keyframes floatShape1 {0%,100%{transform:translateY(0) translateX(0) rotate(0);}25%{transform:translateY(-30px) translateX(20px) rotate(90deg);}50%{transform:translateY(-15px) translateX(-10px) rotate(180deg);}75%{transform:translateY(-40px) translateX(15px) rotate(270deg);}}
+@keyframes floatShape2 {0%,100%{transform:translateY(0) translateX(0) scale(1);}33%{transform:translateY(25px) translateX(-20px) scale(1.1);}66%{transform:translateY(-20px) translateX(25px) scale(0.9);}}
+@keyframes floatShape3 {0%,100%{transform:translateY(0) translateX(0) rotate(0);}50%{transform:translateY(-25px) translateX(-30px) rotate(180deg);}}
+@keyframes floatShape4 {0%,100%{transform:translateY(0) translateX(0) rotate(0);}25%{transform:translateY(20px) translateX(-15px) rotate(45deg);}50%{transform:translateY(-10px) translateX(30px) rotate(90deg);}75%{transform:translateY(15px) translateX(-20px) rotate(135deg);}}
+@keyframes floatShape5 {0%,100%{transform:translateY(0) translateX(0) scale(1);}50%{transform:translateY(-35px) translateX(20px) scale(1.2);}}
+@keyframes floatShape6 {0%,100%{transform:translateY(0) translateX(0) rotate(0);}33%{transform:translateY(-15px) translateX(10px) rotate(60deg);}66%{transform:translateY(10px) translateX(-25px) rotate(120deg);}}
 
 /* Responsive */
-@media (max-width: 1024px) {
-  .visionContent {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    text-align: center;
-  }
-
-  .visionImage {
-    max-width: 80%;
-    margin: 0 auto;
-  }
+@media (max-width:1024px){
+  .visionContent{grid-template-columns:1fr; gap:3rem; text-align:center;}
+  .visionImage{max-width:80%; margin:0 auto;}
 }
+@media (max-width:768px){
+  .animatedBg{animation:gradientMove 25s ease infinite; filter:blur(40px) opacity(0.3);}
+  .shape{animation-duration:35s !important; opacity:0.7;}
+  .shape4,.shape5,.shape6{display:none;}
+  .shape,.animatedBg,.visionHeader,.visionContent{transform:translateZ(0); backface-visibility:hidden; perspective:1000px;}
+  .bgImage{filter:blur(20px) opacity(0.2);}
+  .visionTitle{font-size:2.5rem;}
+  .visionSubtitle{font-size:1.1rem;}
+  .visionText p{font-size:1rem;}
+  .skills{justify-content:center;}
+  .skillTag{padding:0.6rem 1.2rem; font-size:0.85rem; backdrop-filter:none;}
+}
+@media (max-width:480px){
+  .visionTitle{font-size:2rem;}
+  .visionContainer{padding:1.5rem;}
+  .visionContent{gap:2rem; margin-bottom:4rem;}
+  .skillTag{padding:0.5rem 1rem; font-size:0.8rem;}
+  .visionSection{padding:60px 0;}
+  .floatingShapes{display:none;}
+}
+
+/* High DPI */
+@media (-webkit-min-device-pixel-ratio:2),(min-resolution:192dpi){.shape{transform:translateZ(0);}}
